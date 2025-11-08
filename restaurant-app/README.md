@@ -2,7 +2,8 @@
 
 A beautiful, full-featured restaurant ordering system built with the MERN stack (MongoDB, Express, React, Node.js). Features a modern UI with real-time order tracking, user authentication, and a smooth ordering experience.
 
-![Modern Restaurant App Banner](project-banner.png)
+![Modern Restaurant App Banner](images/1.png)
+![Modern Restaurant App Banner](images/2.png)
 
 ## ✨ Features
 
