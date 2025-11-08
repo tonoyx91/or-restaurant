@@ -5,7 +5,9 @@ const FoodSchema = new mongoose.Schema({
   description: String,
   image: String,
   price: Number,
-  rating: { type: Number, default: 4.5 }
+  rating: { type: Number, default: 0 },
+  ratingCount: { type: Number, default: 0 },
+  ratingSum: { type: Number, default: 0 }
 });
 
 module.exports = mongoose.model('Food', FoodSchema);

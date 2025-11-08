@@ -18,7 +18,8 @@ const OrderSchema = new mongoose.Schema({
   vat: Number,
   platformFee: Number,
   total: Number,
-  status: { type: String, default: 'pending' }
+  status: { type: String, enum: ['pending', 'confirmed', 'preparing', 'on-the-way', 'delivered', 'cancelled'], default: 'pending' },
+  rating: { type: Number, min: 1, max: 5 }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Order', OrderSchema);
