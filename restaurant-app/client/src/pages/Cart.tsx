@@ -5,14 +5,16 @@ import { useAuth } from '../context/AuthContext';
 import { CartItem } from '../types';
 import { NotificationService } from '../services/notification';
 import OrderTracker from '../components/OrderTracker';
+import { useNavigate } from 'react-router-dom';
 
 interface CartProps {
   onOrderCreated?: (orderId: string) => void;
 }
 
 export default function Cart({ onOrderCreated }: CartProps) {
-  const { items, subtotal, clear, updateQty } = useCart();
+  const { items, subtotal, clear, updateQty, setActiveOrder } = useCart();
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
   const [voucherCode, setVoucherCode] = useState('');
@@ -61,11 +63,17 @@ export default function Cart({ onOrderCreated }: CartProps) {
     try {
       const res = await API.post('/orders', payload);
       NotificationService.success('Order placed successfully!');
-      setOrderId(res.data._id);
-      onOrderCreated?.(res.data._id);
+      const newOrderId = res.data._id;
+      
+      // Clear cart and set active order
+      clear();
+      setActiveOrder({ id: newOrderId, startTime: Date.now() });
+      
+      // Navigate to home page
+      // navigate('/');
+      
       setTimeout(() => {
-        setOrderId(undefined);
-        clear();
+        setActiveOrder(null);
       }, 180000);
     } catch (err) {
       NotificationService.error('Failed to create order');

@@ -4,7 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
-  const { items } = useCart();
+  const { items, hasActiveOrder } = useCart();
   const { user, logout } = useAuth();
   return (
     <nav className="sticky top-0 z-50 glass-effect border-b border-gray-100">

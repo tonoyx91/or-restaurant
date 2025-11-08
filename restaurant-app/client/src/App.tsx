@@ -9,11 +9,13 @@ import Auth from './pages/Auth';
 import Navbar from './components/Navbar';
 import OrderTracker from './components/OrderTracker';
 import { useAuth } from './context/AuthContext';
+import { useCart } from './context/CartContext';
 
 export default function App() {
   const { user } = useAuth();
-  const [activeOrder, setActiveOrder] = useState<{ id: string; startTime: number } | null>(null);
+  // const [activeOrder, setActiveOrder] = useState<{ id: string; startTime: number } | null>(null);
 
+  const {activeOrder, setActiveOrder} = useCart();
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800">
       <Navbar />
